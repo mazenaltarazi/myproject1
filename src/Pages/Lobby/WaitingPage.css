@@ -1,0 +1,60 @@
+/* WaitingPage.css */
+
+/* Styles for the waiting container */
+.waiting-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .waiting-container h2 {
+    font-size: 20px;
+  }
+  
+  /* Styles for the spinner */
+  .spinner {
+    margin: 20px auto;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #007bff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+  }
+  
+  /* Keyframes animation for the spinner */
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  /* Center the table on the page */
+
+  table {
+    margin: 60px auto;
+    border: 10px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #007bff;
+    border-radius: 50%;
+    width: 700px;
+    height: 50px;
+
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
