@@ -23,6 +23,42 @@
 
     resize: none;
 }
+.accuracy {
+  font-size: 40px;
+  color: #000000;
+  margin-top: 50px;
+  border: 50px;
+  background-color: rgb(255, 255, 255);
+  width: 100px;
+  border-radius: 70px;
+  height: 100px;
+  justify-content: center;
+  margin-left: 200px;
+  padding-top: 25px;
+  
+
+
+}
+.k{
+  font-size: 20px;
+  color: #000000;
+  margin-top: 0px;
+  border: 50px;
+  background-color: #acb9c8;
+  width: 100px;
+  height: 00px;
+  justify-content: center;
+  margin-left: 200px;
+  padding-top: 5px;
+  
+
+}
+
+
+.red-text {
+  background-color: red;
+}
+
 
 .box {
     background-color: #acb9c8;

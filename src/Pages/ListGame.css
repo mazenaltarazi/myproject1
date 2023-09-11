@@ -1,0 +1,66 @@
+
+.waiting-container {
+    margin-top: 20px;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .waiting-container h2 {
+    font-size: 20px;
+  }
+  
+
+  
+  /* Keyframes animation for the spinner */
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  /* Center the table on the page */
+
+  .table {
+    margin: 60px auto;
+    border: 10px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #007bff;
+    border-radius: 50%;
+    width: 700px;
+    height: 50px;
+    justify-content: center;
+
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f1eeee;
+  }
+  .button1 {
+    padding: 10px 20px;
+    background-color: #6fb0f2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 1000px;
+    margin-top: 20px;
+    font-display:inherit;
+  }
+  
+  .button2 {
+    padding: 5px 10px;
+    background-color: #9bb6cb;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left;
+    justify-content: center;
+    font-weight: bold;
+    color: rgb(79, 67, 67);
+  }
