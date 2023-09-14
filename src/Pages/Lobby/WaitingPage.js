@@ -1,30 +1,30 @@
-import React, { useEffect,  } from "react";
+import React, { useEffect } from "react";
 import "./WaitingPage.css";
-import {  useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getConnection, getCreator, getText, getuserId } from "../../Component/redux/connection";
+import {
+  getConnection,
+  getCreator,
+  getText,
+  getUserName,
+  getuserId,
+} from "../../redux/connection";
 
 export const WaitingPage = ({ gameName }) => {
   const navigate = useNavigate();
   const state = useSelector((state) => state);
   const { id } = useParams();
   const text = getText(state);
-  debugger
-  const creator=getCreator(state);
+  const username = getUserName(state);
+  const creator = getCreator(state);
   const users = getuserId(state);
-  console.log(creator );
+  console.log(creator);
 
-
-
-
-
-  
   const connection = getConnection(state);
   const handleStartGame = async (randomElement) => {
     connection.on((randomElement) => {});
     if (connection) {
       try {
-        
         connection.invoke("StartGame", id);
         navigate(`/Container/${id}/${creator}`);
       } catch (error) {
@@ -32,37 +32,33 @@ export const WaitingPage = ({ gameName }) => {
       }
     }
   };
+  console.log(users)
 
   useEffect(() => {
-    if (text)     navigate(`/Container/${id}/${creator}`);
-
-
+    if (text) navigate(`/Container/${id}/${creator}`);
   }, [text]);
 
+
   return (
+    <div>
     <div className="waiting-container">
       <h2>Waiting for {gameName} to Start</h2>
       <div className="spinner"></div>
       <table>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>ID</th>
+            <th>players</th>
           </tr>
         </thead>
 
         <tbody>
-        
-    {users&&Array.isArray(users)&&users.map((connectionId) => (
-          <tr key={connectionId.id}>
-            <td>{connectionId.id}</td>
-          </tr>
-        ))}
-
-
-     
-
-
+          {users &&
+            Array.isArray(users) &&
+            users.map((user) => (
+              <tr key={user.userName}>
+                <td>{user.userName}</td>
+              </tr>
+            ))}
         </tbody>
       </table>
       {creator && (
@@ -70,6 +66,7 @@ export const WaitingPage = ({ gameName }) => {
           Start Game
         </button>
       )}
+    </div>
     </div>
   );
 };

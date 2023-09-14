@@ -1,0 +1,37 @@
+
+
+.box {
+    background-color: #beccda;
+    border: 1px solid #000000;
+    padding: 20px;
+    text-align: center;
+    border-radius: 90px;
+    
+
+    margin-bottom: 10px;
+    width: 1000px;
+    height: 500px;
+    
+
+  }
+
+  .user-table {
+    width: 150px;
+    border-collapse: collapse;
+    font-size: smaller;
+    position: absolute; 
+    top: 20px;
+    left: 20px;
+    z-index: 2; 
+  }
+
+.user-table th,
+.user-table td {
+  border: 1px solid #000000;
+  padding: 4px;
+  text-align: left;
+}
+
+.user-table th {
+  background-color: #f2f2f2;
+}

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import * as signalR from "@microsoft/signalr";
 import { useDispatch, useSelector } from "react-redux";
 
+import { StorgeService } from "../Services/storgeService";
 import {
   setAccuracy,
   setConnectionObject,
@@ -15,9 +16,10 @@ import {
   setuserId,
   setWinnerid,
   setCreator,
+  setWpm,
+  setsignaluserid,
   setUserName,
-} from "../Component/redux/connection";
-import { StorgeService } from "../Services/storgeService";
+} from "../redux/connection";
 
 export const ListGame = () => {
   const [games, setGames] = useState([]);
@@ -36,34 +38,33 @@ export const ListGame = () => {
     connection.on("gameList", (data) => {
       setGames(data);
     });
- 
+
     connection.on("onvalid", (isvalid) => {
       dispatch(setIsValid({ body: isvalid }));
     });
 
-    connection.on("Name", (UserName,userid) => {
-      dispatch(setUserName({ body: UserName,userid }));
-    });
-
-
-
-    connection.on("winGame", (winGame,gameId) => {
-      dispatch(setWinner({ body: winGame,gameId }));
+    connection.on("winGame", (winGame, gameId, userName) => {
+      dispatch(setWinner({ body: winGame, gameId, userName }));
     });
     connection.on("sendWinner", (id) => {
       dispatch(setWinnerid({ body: id }));
     });
-    
-        connection.on("idsList", (data) => {
+
+    connection.on("idsList", (data) => {
       dispatch(setuserId({ body: data }));
+    });
+    connection.on("Wpm", (Wpm, userName) => {
+      dispatch(setWpm({ body: Wpm, userName }));
     });
     connection.on("Creator", (data) => {
       dispatch(setCreator({ body: data }));
     });
 
-
-    connection.on("invalidText", (text,gameId) => {
-      dispatch(setIsValidText({ body: text,gameId }));
+    connection.on("invalidText", (text, gameId) => {
+      dispatch(setIsValidText({ body: text, gameId }));
+    });
+    connection.on("signaluserid", (connectionId) => {
+      dispatch(setsignaluserid({ body: connectionId }));
     });
 
     connection.on("CreateGame", (gameId) => {
@@ -84,26 +85,21 @@ export const ListGame = () => {
     setConnection(connection);
   };
 
-
-
   useEffect(() => {
     openConnection();
   }, []);
 
   const handleJoinGame = async (id) => {
-    if (connection) {
+    if (userName.trim() === "") {
+      alert("Please enter your name.");
+    } else if (connection) {
       try {
-        let request1 = {
-          userName: userName,
-        userId: connection.connectionId,
-        };
-
         let request = {
           gameId: id,
+          userName,
         };
 
         await connection.invoke("JoinGame", request);
-        await connection.invoke("SetName", userName);
         navigate(`/waiting/${id}`);
       } catch (error) {
         console.error("Error joining game: ", error);
@@ -111,28 +107,27 @@ export const ListGame = () => {
     }
   };
 
-
-  const handleCreateGame=async()=>{
-    await connection.invoke("SetName", userName);
-    navigate("/Create")
-  }
-
-  
+  const handleCreateGame = async () => {
+    if (userName.trim() === "") {
+      alert("Please enter your name.");
+    } else {
+      dispatch(setUserName({ body: userName }));
+      navigate("/Create");
+    }
+  };
 
   return (
-    <div className="waiting-container">
-      <h2>List of Game</h2>
-        <button className="button1">Create Game</button>{" "}
-      <label htmlFor="userName"> ,,,,,,,,,,</label>
-      <input
+    <div className="waiting-container1">
+      <div className="Username">
+        <input
           type="text"
           id="userName"
+          placeholder="Username"
           value={userName}
-
           onChange={(e) => setuserName(e.target.value)}
           className="input"
         />
-
+      </div>
       <table>
         <thead>
           <tr>
@@ -156,6 +151,10 @@ export const ListGame = () => {
           ))}
         </tbody>
       </table>
+   
+      <button onClick={() => handleCreateGame()} className="button1">
+        Create Game
+      </button>{" "}
     </div>
   );
 };

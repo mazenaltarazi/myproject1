@@ -32,3 +32,13 @@ h1 {
 .play-again-button:hover {
   background-color: #0056b3;
 }
+/* CSS code to change the font color */
+.winner-message .winner {
+  color: red; /* Change 'red' to the desired font color */
+  font-size: larger;
+  font-weight: bold;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.accuracy{
+  font-size: 30px;
+}

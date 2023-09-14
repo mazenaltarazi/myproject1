@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { StorgeService } from "../../Services/storgeService";
+import { StorgeService } from "../Services/storgeService";
 
 export const connectionSlice = createSlice({
   initialState: {
@@ -16,6 +16,8 @@ export const connectionSlice = createSlice({
     winnerid:null,
     creator:false,
     Username:null,
+    Wpm :null,
+    connectionId:null,
   },
   name: "connection",
   
@@ -31,14 +33,21 @@ export const connectionSlice = createSlice({
     setgameId: (state, { payload }) => {
       state.id = payload.body;
     },
+    setgameId: (state, { payload }) => {
+      state.id = payload.body;
+    },
 
     setWinnerid: (state, { payload }) => {
-      state.id = payload.body;
+      state.winnerid = payload.body;
     },
 
 
     setText: (state, { payload }) => {
       state.text = payload.body;
+    },
+    
+    setWpm: (state, { payload }) => {
+      state.Wpm = payload.body;
     },
     
     setuserId: (state, { payload }) => {
@@ -69,6 +78,10 @@ export const connectionSlice = createSlice({
       state.Username = payload.body;
 
     },
+    setsignaluserid: (state, { payload }) => {
+      state.connectionId = payload.body;
+
+    },
 
 
 
@@ -88,6 +101,8 @@ export const {
   setWinnerid,
   setCreator,
   setUserName,
+  setWpm,
+  setsignaluserid,
   
 } = connectionSlice.actions;
 
@@ -116,24 +131,28 @@ export const getuserId = (state) => {
 };
 
 export const getWinnerid = (state) => {
-  return state.reducers.connection.connectionId;
+  return state.reducers.connection.winnerid;
 };
-
 export const getUserName = (state) => {
-  return state.reducers.connection.UserName;
+  return state.reducers.connection.Username;
 };
 
-
+export const getsignaluserid = (state) => {
+  return state.reducers.connection.signaluserid;
+};
 
 export const getAccuracy =(state)=>{
   return state.reducers.connection.accuracy;
+  
+};
+export const getWpm =(state)=>{
+  return state.reducers.connection.Wpm ;
   
 };
 export const getWinner = (state) => {
   return state.reducers.connection.iswinner;
 };
 export const getCreator = (state) => {
-  debugger
   return state.reducers.connection.creator;
 };
 

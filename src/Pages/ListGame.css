@@ -1,8 +1,12 @@
 
-.waiting-container {
-    margin-top: 20px;
+.waiting-container1 {
     text-align: center;
     justify-content: center;
+    margin-top: 50px;
+
+
+ 
+
   }
   
   .waiting-container h2 {
@@ -26,6 +30,7 @@
     width: 700px;
     height: 50px;
     justify-content: center;
+    
 
   }
   
@@ -41,6 +46,9 @@
   tr:nth-child(even) {
     background-color: #f1eeee;
   }
+  tr:nth-child(odd) {
+    background-color: #d8d4d4;
+  }
   .button1 {
     padding: 10px 20px;
     background-color: #6fb0f2;
@@ -49,7 +57,6 @@
     border-radius: 5px;
     cursor: pointer;
     margin-left: 1000px;
-    margin-top: 20px;
     font-display:inherit;
   }
   
@@ -64,3 +71,25 @@
     font-weight: bold;
     color: rgb(79, 67, 67);
   }
+.form-group {
+  margin-bottom: 0px;
+}
+
+
+  
+.input {
+  margin: 50px;
+  width: 500px;
+  height: 30px;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 4px; 
+  transition: border-color 0.5s ease; 
+}
+
+/* Style the input on focus/hover */
+.username:focus,
+.username:hover {
+  border-color: #0074e4; /* Change border color on focus/hover */
+  outline: none; /* Remove default focus outline */
+}
